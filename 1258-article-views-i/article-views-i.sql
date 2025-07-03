@@ -1,8 +1,8 @@
 SELECT 
     DISTINCT(author_id) AS id
 FROM 
-    Views
+    Views 
 WHERE 
-    author_id = viewer_id
+    viewer_id = author_id 
 ORDER BY 
-    id
+    author_id 

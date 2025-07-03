@@ -1,6 +1,6 @@
 SELECT 
     tweet_id
 FROM 
-    Tweets
-WHERE 
+    Tweets 
+WHERE
     LENGTH(content) > 15

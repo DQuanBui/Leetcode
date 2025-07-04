@@ -1,6 +1,7 @@
-SELECT 
-    unique_id,
-    name
-FROM Employees
-    LEFT JOIN EmployeeUNI
-    ON  Employees.id = EmployeeUNI.id
+SELECT
+    Eu.unique_id,
+    E.name AS name
+FROM 
+    Employees E
+    LEFT JOIN EmployeeUNI Eu
+    ON E.id = Eu.id 

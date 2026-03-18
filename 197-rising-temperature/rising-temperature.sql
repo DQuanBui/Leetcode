@@ -1,10 +1,15 @@
 # find all dates (id) with higher temperatures > previous dates (yesterday)
 
-SELECT 
-    w2.id
-FROM 
-    Weather w1
-    JOIN Weather w2 
-    ON DATEDIFF(w1.recordDate, w2.recordDate) = -1
-WHERE 
-    w2.temperature > w1.temperature
+WITH cte AS (
+    SELECT
+        id,
+        recordDate,
+        temperature,
+        LAG(recordDate) OVER (ORDER BY recordDate) AS prev_date,
+        LAG(temperature) OVER (ORDER BY recordDate) AS prev_temp
+    FROM Weather
+)
+SELECT id
+FROM cte
+WHERE DATEDIFF(recordDate, prev_date) = 1
+  AND temperature > prev_temp;
